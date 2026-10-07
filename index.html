@@ -1,230 +1,689 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>منصة إتقان</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#176b4d">
+<title>منصة إتقان - مركز سعد بن معاذ</title>
 <style>
+:root{
+    --green:#176b4d;
+    --green2:#23845f;
+    --green3:#eaf5ef;
+    --gold:#c9a227;
+    --gold2:#e8ca63;
+    --bg:#f6f7f4;
+    --white:#fff;
+    --text:#26352e;
+    --muted:#6b756f;
+    --danger:#b83b3b;
+    --border:#d9e2dc;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f4f7f5;color:#18352b}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,"Segoe UI",Arial,sans-serif;padding-bottom:85px}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.wrap{max-width:1100px;margin:auto;padding:18px}
-.card{background:#fff;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 5px 20px #00000012}
-h1,h2,h3{margin-top:0}
-.muted{color:#66756f}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-label{display:block;font-weight:bold;margin:10px 0 6px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #ccd8d2;border-radius:10px;background:#fff}
-.btn{border:0;border-radius:10px;padding:11px 16px;background:#1f7a55;color:#fff}
-.btn.alt{background:#e8f1ed;color:#1f5d46}
-.btn.danger{background:#b33a3a}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav button{border:0;background:#e8f1ed;color:#174c39;border-radius:10px;padding:10px 14px}
-header{background:#164d3a;color:white;padding:18px;border-radius:20px;margin-bottom:14px}
-.badge{display:inline-block;background:#e8f1ed;color:#18583f;padding:5px 9px;border-radius:20px;font-size:13px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:9px;border-bottom:1px solid #e5ebe8;text-align:right}
-.login{max-width:460px;margin:8vh auto}
-.hidden{display:none}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.notice{padding:12px;border-radius:12px;background:#fff8df;color:#725b10;margin:10px 0}
-.stat{font-size:28px;font-weight:bold}
-@media(max-width:600px){.wrap{padding:10px}.card{padding:14px}header{border-radius:14px}}
+.container{max-width:850px;margin:auto;padding:15px}
+header{background:linear-gradient(135deg,var(--green),#0f5139);color:white;padding:20px 15px;text-align:center;border-bottom:4px solid var(--gold)}
+header h3{margin:0 0 6px;color:var(--gold2);font-size:13px}
+header h1{margin:0;font-size:18px;line-height:1.7}
+.card{background:var(--white);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);border-right:5px solid var(--gold)}
+h2,h3,h4{line-height:1.6}
+label{display:block;color:var(--green);font-weight:bold;margin-bottom:6px}
+.form-group{margin-bottom:15px}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:white;color:var(--text);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--green2);box-shadow:0 0 0 2px rgba(35,132,95,.10)}
+.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:bold}
+.btn-primary{background:var(--green);color:white}
+.btn-gold{background:var(--gold);color:white}
+.btn-light{background:var(--green3);color:var(--green)}
+.btn-danger{background:var(--danger);color:white}
+.btn-full{width:100%}
+.btn-small{padding:7px 10px;font-size:12px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.hint{color:var(--muted);font-size:12px;line-height:1.7;margin-top:5px}
+.notice{background:#fff8dc;border:1px solid #ead37b;color:#6c5711;padding:12px;border-radius:10px;line-height:1.7}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--green3);border-radius:12px;padding:15px;text-align:center}
+.stat strong{display:block;color:var(--green);font-size:25px}
+.stat span{font-size:12px;color:var(--muted)}
+.section-content{display:none}
+.section-content.active{display:block}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{padding:10px 8px;border-bottom:1px solid #e5ebe7;text-align:right;font-size:13px;vertical-align:middle}
+th{background:var(--green3);color:var(--green)}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:var(--green3);color:var(--green);font-size:12px;font-weight:bold}
+.gold-badge{background:#fff5cf;color:#765d00}
+.empty{color:var(--muted);text-align:center;padding:20px}
+.report-day{border:1px solid #dce7df;border-radius:12px;overflow:hidden;margin:15px 0}
+.report-day-title{background:var(--green);color:white;padding:10px 12px;font-weight:bold}
+.report-record{padding:10px;border-bottom:1px solid #edf0ee;line-height:1.8}
+.report-record:last-child{border-bottom:0}
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0d4d37,#1b7454);display:flex;justify-content:center;align-items:center;padding:20px;z-index:5000;overflow:auto}
+.login-card{background:white;width:100%;max-width:430px;border-radius:20px;padding:25px;box-shadow:0 15px 40px rgba(0,0,0,.25);text-align:center}
+.login-logo{width:75px;height:75px;margin:0 auto 12px;border-radius:50%;background:var(--green);border:4px solid var(--gold);color:white;display:flex;align-items:center;justify-content:center;font-size:34px}
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}
+.role-btn{border:1px solid var(--border);background:white;border-radius:10px;padding:10px 5px;color:var(--green);font-weight:bold}
+.role-btn.active{background:var(--green);color:white;border-color:var(--green)}
+.login-extra{text-align:right}
+.bottom-nav{position:fixed;bottom:0;right:0;left:0;background:white;border-top:1px solid #ddd;box-shadow:0 -4px 15px rgba(0,0,0,.07);display:flex;z-index:2000}
+.nav-item{flex:1;text-align:center;padding:8px 3px;color:#777;font-size:11px;cursor:pointer}
+.nav-item span{display:block;font-size:19px;margin-bottom:2px}
+.nav-item.active{color:var(--green);font-weight:bold}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:15px;z-index:4000}
+.modal-card{background:white;width:100%;max-width:800px;max-height:90vh;overflow:auto;border-radius:16px;padding:20px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.student-portal{max-width:850px;margin:auto;padding:15px}
+.hidden{display:none!important}
+@media(max-width:650px){
+.container{padding:10px}.card{padding:15px}.stat-grid{grid-template-columns:1fr 1fr 1fr}.two-col,.three-col{grid-template-columns:1fr}
+header h1{font-size:15px}.role-grid{grid-template-columns:1fr 1fr 1fr}
+}
+@media print{
+body{background:white;padding:0}
+body>*:not(#printArea){display:none!important}
+#printArea{display:block!important;padding:20px}
+.no-print{display:none!important}
+}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div id="loginScreen" class="login-screen">
+<div class="login-card">
+<div class="login-logo">إ</div>
+<div style="color:var(--green);font-weight:bold;font-size:13px;">وزارة الأوقاف والشؤون الإسلامية بنغازي</div>
+<h2 style="color:var(--green);margin:8px 0 0;font-size:18px;">منصة إتقان</h2>
+<div style="color:var(--gold);font-weight:bold;font-size:14px;">مركز سعد بن معاذ للسنة والمتون</div>
+<p style="color:#777;font-size:12px;">اختاري نوع الدخول ثم أدخلي بيانات الدخول.</p>
+<div class="role-grid">
+<button class="role-btn active" data-role="teacher">👩‍🏫<br>معلمة</button>
+<button class="role-btn" data-role="student">👩‍🎓<br>طالبة</button>
+<button class="role-btn" data-role="admin">🏢<br>إدارة</button>
+</div>
+<div id="teacherLoginBox" class="login-extra">
+<div class="form-group"><label>رقم الحلقة</label><select id="teacherCircle"><option value="">اختاري رقم الحلقة</option></select></div>
+<div class="form-group"><label>كود المعلمة</label><input id="teacherCode" type="password" placeholder="أدخلي الكود"></div>
+</div>
+<div id="studentLoginBox" class="login-extra hidden">
+<div class="form-group"><label>كود الطالبة</label><input id="studentCodeLogin" type="text" placeholder="أدخلي الكود الخاص بك" autocomplete="off"></div>
+<div class="hint">كود الطالبة تحصل عليه من المعلمة بعد تسجيلها في المنصة.</div>
+</div>
+<div id="adminLoginBox" class="login-extra hidden">
+<div class="form-group"><label>كود الإدارة</label><input id="adminCode" type="password" placeholder="أدخلي كود الإدارة"></div>
+</div>
+<button id="loginButton" class="btn btn-primary btn-full">تسجيل الدخول</button>
+<div id="loginError" style="display:none;color:#b32d2d;font-size:13px;margin-top:12px;font-weight:bold;"></div>
+</div>
+</div>
+<div id="studentPortal" class="student-portal hidden">
+<div class="card">
+<h2 style="color:var(--green);margin-top:0;">🌷 أهلاً بك يا طالبة العلم</h2>
+<h3 id="portalStudentName" style="color:var(--gold);"></h3>
+<div class="stat-grid">
+<div class="stat"><strong id="portalCircle">-</strong><span>الحلقة</span></div>
+<div class="stat"><strong id="portalLevel">-</strong><span>المستوى</span></div>
+<div class="stat"><strong id="portalAverage">-</strong><span>متوسط التقييم</span></div>
+</div>
+<p><strong>المتن الحالي:</strong> <span id="portalBook"></span></p>
+<p><strong>كود الدخول:</strong> <span id="portalCode" style="color:var(--green);font-weight:bold;"></span></p>
+</div>
+<div class="card">
+<h3 style="color:var(--green);margin-top:0;">📖 سجل التسميع الخاص بك</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>التاريخ</th><th>اليوم</th><th>نوع الحلقة</th><th>المستوى</th><th>المتن</th><th>من</th><th>إلى</th><th>التقييم</th></tr></thead>
+<tbody id="portalHistory"></tbody>
+</table></div>
+</div>
+<button id="studentLogout" class="btn btn-danger btn-full">تسجيل الخروج</button>
+</div>
+<div id="mainSystem" class="hidden">
+<header>
+<h3>وزارة الأوقاف والشؤون الإسلامية بنغازي</h3>
+<h1>مركز السنة لتحفيظ المتون العلمية والسنة النبوية<br><span style="color:var(--gold2);font-size:14px;">مركز سعد بن معاذ</span></h1>
+</header>
+<main class="container">
+<section id="section-home" class="section-content active">
+<div class="card">
+<h2 id="welcome" style="color:var(--green);margin-top:0;">أهلاً بك 🌷</h2>
+<p id="roleInfo"></p>
+<div class="notice">سجّلي التسميع أولًا بأول، وفي نهاية الفترة يمكنك استخراج التقرير اليومي أو الأسبوعي أو الشهري أو بين تاريخين.</div>
+</div>
+<div class="stat-grid">
+<div class="stat"><strong id="studentCount">0</strong><span>عدد الطالبات</span></div>
+<div class="stat"><strong id="recitationCount">0</strong><span>سجلات التسميع</span></div>
+<div class="stat"><strong id="todayCount">0</strong><span>تسميع اليوم</span></div>
+</div>
+</section>
+<section id="section-recitation" class="section-content">
+<div class="card">
+<h2 style="color:var(--green);margin-top:0;">🎙 تسجيل التسميع</h2>
+<div class="form-group"><label>الطالبة</label><select id="recStudent"></select></div>
+<div class="form-group"><label>المستوى</label><select id="recLevel"></select></div>
+<div class="form-group"><label>المتن</label><select id="recBook"></select><div class="hint">عند اختيار المستوى تظهر المتون التابعة له فقط.</div></div>
+<div class="two-col">
+<div class="form-group"><label>اليوم</label><select id="recDay">
+<option value="السبت">السبت</option><option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option><option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option>
+</select></div>
+<div class="form-group"><label>نوع الحلقة</label><select id="recMode"><option value="حضوري">حضوري</option><option value="عن بُعد">عن بُعد</option></select></div>
+</div>
+<div class="form-group"><label>تاريخ التسميع</label><input id="recDate" type="date"></div>
+<div class="two-col">
+<div class="form-group"><label>من</label><input id="recFrom" type="text" placeholder="مثال: حديث 1"></div>
+<div class="form-group"><label>إلى</label><input id="recTo" type="text" placeholder="مثال: حديث 5"></div>
+</div>
+<div class="two-col">
+<div class="form-group"><label>نوع التسميع</label><select id="recType"><option value="حفظ جديد">حفظ جديد</option><option value="مراجعة">مراجعة</option><option value="تسميع">تسميع</option></select></div>
+<div class="form-group"><label>التقييم من 10</label><input id="recRating" type="number" min="1" max="10" step="1" placeholder="مثال: 9"></div>
+</div>
+<div class="form-group"><label>ملاحظات</label><textarea id="recNotes" rows="3" placeholder="أي ملاحظات على التسميع..."></textarea></div>
+<button id="saveRecitation" class="btn btn-primary btn-full">💾 حفظ التسميع</button>
+</div>
+</section>
+<section id="section-students" class="section-content">
+<div class="card">
+<h2 style="color:var(--green);margin-top:0;">➕ إضافة طالبة جديدة</h2>
+<div class="form-group"><label>اسم الطالبة</label><input id="studentName" type="text" placeholder="اكتبي اسم الطالبة"></div>
+<div class="form-group"><label>المستوى</label><select id="studentLevel"></select></div>
+<div class="form-group"><label>المتن</label><select id="studentBook"></select></div>
+<button id="addStudent" class="btn btn-primary btn-full">حفظ الطالبة وتوليد كود الدخول</button>
+</div>
+<div class="card">
+<h3 style="color:var(--green);margin-top:0;">👩‍🎓 طالبات الحلقة</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>الطالبة</th><th>الحلقة</th><th>المستوى</th><th>المتن</th><th>الكود</th><th>إجراء</th></tr></thead>
+<tbody id="studentsTable"></tbody>
+</table></div>
+</div>
+</section>
+<section id="section-reports" class="section-content">
+<div class="card">
+<h2 style="color:var(--green);margin-top:0;">📊 التقارير</h2>
+<div class="notice">اختاري نوع التقرير. التقرير اليومي يعرض كل الطالبات اللاتي سمعن في التاريخ المحدد، والتقرير بين تاريخين يرتب السجلات حسب كل يوم.</div>
+<div class="three-col" style="margin-top:15px;">
+<button id="dailyReport" class="btn btn-light">📅 تقرير يومي</button>
+<button id="rangeReport" class="btn btn-light">📆 من تاريخ إلى تاريخ</button>
+<button id="monthlyReport" class="btn btn-gold">📊 تقرير شهري</button>
+</div>
+</div>
+<div id="reportControls" class="card hidden">
+<h3 id="reportControlsTitle" style="color:var(--green);margin-top:0;">إعداد التقرير</h3>
+<div id="dailyControls"><div class="form-group"><label>اختاري تاريخ اليوم المطلوب</label><input id="reportSingleDate" type="date"></div></div>
+<div id="rangeControls" class="hidden"><div class="two-col">
+<div class="form-group"><label>من تاريخ</label><input id="reportFromDate" type="date"></div>
+<div class="form-group"><label>إلى تاريخ</label><input id="reportToDate" type="date"></div>
+</div></div>
+<div id="monthControls" class="hidden"><div class="form-group"><label>اختاري الشهر</label><input id="reportMonth" type="month"></div></div>
+<button id="generateReport" class="btn btn-primary btn-full">📄 إنشاء التقرير</button>
+</div>
+<div id="reportResult" class="card hidden">
+<div class="actions no-print" style="margin-bottom:15px;">
+<button id="printReport" class="btn btn-primary">🖨️ طباعة التقرير</button>
+<button id="copyReport" class="btn btn-gold">📋 نسخ التقرير</button>
+</div>
+<div id="reportHtml"></div>
+</div>
+</section>
+</main>
+<nav class="bottom-nav">
+<div class="nav-item active" data-tab="home"><span>🏠</span>الرئيسية</div>
+<div class="nav-item" data-tab="recitation"><span>🎙️</span>التسميع</div>
+<div class="nav-item" data-tab="students"><span>👩‍🎓</span>الطالبات</div>
+<div class="nav-item" data-tab="reports"><span>📊</span>التقارير</div>
+</nav>
+</div>
+<div id="studentModal" class="modal">
+<div class="modal-card">
+<h2 id="modalName" style="color:var(--green);margin-top:0;"></h2>
+<p><strong>الكود:</strong> <span id="modalCode"></span></p>
+<p><strong>المستوى والمتن الحالي:</strong> <span id="modalCurrent"></span></p>
+<div class="table-wrap"><table>
+<thead><tr><th>التاريخ</th><th>اليوم</th><th>النوع</th><th>المستوى</th><th>المتن</th><th>من</th><th>إلى</th><th>التقييم</th></tr></thead>
+<tbody id="modalHistory"></tbody>
+</table></div>
+<button id="closeModal" class="btn btn-light btn-full" style="margin-top:15px;">إغلاق</button>
+</div>
+</div>
+<div id="printArea" style="display:none;"></div>
 <script>
 "use strict";
-(function(){
-const KEY="itqan_sunnah_v2";
-const SESSION="itqan_session_v2";
-const DAYS=["السبت","الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس"];
-const LEVELS=[
-  {id:"1",name:"المستوى الأول",matn:["الأصول الثلاثة وأدلتها","تحفة الأطفال والغلمان","الأرجوزة الميئية","الأربعون في مباني الإسلام"]},
-  {id:"2",name:"المستوى الثاني",matn:["نظم الآجرومية","المنظومة البيقونية","منظومة أبي إسحاق الإلبيري","مختصر الآداب والأذكار"]},
-  {id:"3",name:"المستوى الثالث",matn:["العقيدة الواسطية","كتاب التوحيد","المقدمة الآجرومية","تسهيل الطرقات في نظم الورقات"]},
-  {id:"4",name:"المستوى الرابع",matn:["عمدة الأحكام"]},
-  {id:"5",name:"الإضافي",matn:["الشاطبية في القراءات"]}
-];
-const TEACHERS=Array.from({length:14},(_,i)=>({id:"t"+(i+1),name:"أستاذة الحلقة "+(i+1),circle:i+1,code:"t"+(i+1)}));
-
-function blank(){
-  return {circles:Array.from({length:14},(_,i)=>({id:i+1,name:"الحلقة "+(i+1),day:"السبت",mode:"حضوري"})),students:[],recitations:[]};
+const STUDENTS_KEY = "itqan_students";
+const RECITATIONS_KEY = "itqan_recitations";
+const LEVELS = {
+"المستوى الأول":["الأصول الثلاثة وأدلتها","تحفة الأطفال والغلمان","الأرجوزة الميئية","الأربعون في مباني الإسلام"],
+"المستوى الثاني":["نظم الآجرومية","المنظومة البيقونية","منظومة أبي إسحاق الإلبيري","مختصر الآداب والأذكار"],
+"المستوى الثالث":["العقيدة الواسطية","كتاب التوحيد","المقدمة الآجرومية","تسهيل الطرقات في نظم الورقات"],
+"المستوى الرابع":["عمدة الأحكام"],
+"الإضافي":["الشاطبية في القراءات"]
+};
+const TEACHERS = {};
+for(let i=1;i<=14;i++){
+TEACHERS[String(i)]={code:"t"+i,name:"معلمة الحلقة "+i,circle:String(i)};
 }
-function load(){
-  try{const x=JSON.parse(localStorage.getItem(KEY));return x&&x.circles&&x.students&&x.recitations?x:blank()}catch(e){return blank()}
+const ADMIN_CODE="ADMIN-ITQAN";
+let students=[];
+let recitations=[];
+let currentRole="";
+let currentUser="";
+let currentCircle="";
+let currentStudent=null;
+let selectedReportType="";
+function $(id){return document.getElementById(id)}
+function escapeHTML(value){
+return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
-
-let data=load();
-let session=JSON.parse(localStorage.getItem(SESSION)||"null");
-let page="home";
-
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}
-function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function teacher(){return TEACHERS.find(x=>x.id===session?.teacherId)}
-function circle(){return data.circles.find(x=>x.id===teacher()?.circle)}
-function level(id){return LEVELS.find(x=>x.id===id)}
-function fmtDate(d){return d?new Date(d).toLocaleDateString("ar-LY"):new Date().toLocaleDateString("ar-LY")}
-
-function loginView(){
-  return `<div class="wrap login"><div class="card">
-    <h1>منصة إتقان</h1><p class="muted">مركز سعد بن معاذ للسنة والمتون</p>
-    <div class="notice">تسجيل الدخول للمعلمات</div>
-    <form id="loginForm">
-      <label>اختاري الحلقة</label><select id="teacherId" required><option value="">اختاري الحلقة</option>${TEACHERS.map(t=>`<option value="${t.id}">الحلقة ${t.circle}</option>`).join("")}</select>
-      <label>رمز الدخول</label><input id="loginCode" required autocomplete="off" placeholder="أدخلي رمز الدخول">
-      <button class="btn" style="width:100%;margin-top:14px">دخول</button>
-    </form></div></div>`;
+function normalizeArray(value){return Array.isArray(value)?value:[]}
+function saveData(){
+localStorage.setItem(STUDENTS_KEY,JSON.stringify(students));
+localStorage.setItem(RECITATIONS_KEY,JSON.stringify(recitations));
 }
-
-function layout(content){
-  const t=teacher(),c=circle();
-  return `<div class="wrap"><header><h1>منصة إتقان</h1><div>مركز سعد بن معاذ للسنة والمتون</div><div class="actions">
-    <span class="badge">${esc(t.name)}</span><span class="badge">${esc(c?.name||"")}</span><span class="badge">${esc(c?.day||"")} - ${esc(c?.mode||"")}</span>
-  </div></header>
-  <div class="nav">
-    ${["home","students","recitation","reports","settings"].map((p,i)=>`<button data-page="${p}">${["الرئيسية","الطالبات","التسميع","التقارير","الإعدادات"][i]}</button>`).join("")}
-    <button id="logout">تسجيل الخروج</button></div>${content}</div>`;
+function loadData(){
+try{students=normalizeArray(JSON.parse(localStorage.getItem(STUDENTS_KEY)||"[]"))}catch(e){students=[]}
+try{recitations=normalizeArray(JSON.parse(localStorage.getItem(RECITATIONS_KEY)||"[]"))}catch(e){recitations=[]}
+migrateOldData();
 }
-
-function home(){
-  const mine=data.students.filter(s=>s.circle===teacher().circle);
-  const rec=data.recitations.filter(r=>r.circle===teacher().circle);
-  return `<div class="card"><h2>أهلًا بك يا ${esc(teacher().name)}</h2><div class="grid">
-    <div><div class="muted">عدد الطالبات</div><div class="stat">${mine.length}</div></div>
-    <div><div class="muted">سجلات التسميع</div><div class="stat">${rec.length}</div></div>
-  </div></div>
-  <div class="card"><h3>معلومات الحلقة</h3><p>اليوم: <b>${esc(circle().day)}</b></p><p>نوع الحلقة: <b>${esc(circle().mode)}</b></p>
-  <p class="muted">يمكن للمعلمة تغيير اليوم ونوع الحلقة من الإعدادات.</p></div>`;
+function migrateOldData(){
+let changed=false;
+students.forEach((s,index)=>{
+if(!s.id){s.id=Date.now()+index;changed=true}
+if(!s.studentCode){
+let code;
+do{code="ST-"+Math.floor(10000+Math.random()*90000)}while(students.some(x=>x!==s&&x.studentCode===code));
+s.studentCode=code;changed=true;
 }
-
-function students(){
-  const mine=data.students.filter(s=>s.circle===teacher().circle);
-  return `<div class="card"><h2>إضافة طالبة</h2>
-    <form id="studentForm"><div class="grid">
-      <div><label>اسم الطالبة الثلاثي</label><input id="sName" required></div>
-      <div><label>المستوى</label><select id="sLevel" required><option value="">اختاري المستوى</option>${LEVELS.map(l=>`<option value="${l.id}">${esc(l.name)}</option>`).join("")}</select></div>
-      <div><label>المتن المقرر</label><select id="sMatn" required disabled><option value="">اختاري المستوى أولًا</option></select></div>
-    </div><button class="btn">حفظ الطالبة وتوليد الكود</button></form></div>
-    <div class="card"><h2>طالبات الحلقة</h2>${mine.length?`<table><thead><tr><th>الاسم</th><th>المستوى</th><th>المتن</th><th>الكود</th><th></th></tr></thead><tbody>${mine.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(level(s.levelId)?.name)}</td><td>${esc(s.matn)}</td><td><b>${esc(s.code)}</b></td><td><button class="btn alt" data-history="${s.id}">السجل</button></td></tr>`).join("")}</tbody></table>`:"<p class='muted'>لا توجد طالبات بعد.</p>"}</div>`;
+if(!s.circle){
+const match=String(s.role||"").match(/(\d+)/);
+if(match){s.circle=match[1];changed=true}
 }
-
-function recitation(){
-  const mine=data.students.filter(s=>s.circle===teacher().circle);
-  return `<div class="card"><h2>التسميع</h2>
-    <form id="recForm"><div class="grid">
-      <div><label>الطالبة</label><select id="rStudent" required><option value="">اختاري الطالبة</option>${mine.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select></div>
-      <div><label>المستوى</label><select id="rLevel" required><option value="">اختاري المستوى</option>${LEVELS.map(l=>`<option value="${l.id}">${esc(l.name)}</option>`).join("")}</select></div>
-      <div><label>المتن</label><select id="rMatn" required disabled><option value="">اختاري المستوى أولًا</option></select></div>
-      <div><label>من</label><input id="rFrom" required placeholder="مثال: 1"></div>
-      <div><label>إلى</label><input id="rTo" required placeholder="مثال: 10"></div>
-      <div><label>نوع التسميع</label><select id="rType"><option>جديد</option><option>مراجعة</option><option>اختبار</option></select></div>
-      <div><label>التقييم</label><select id="rRating"><option>ممتاز</option><option>جيد جدًا</option><option>جيد</option><option>يحتاج متابعة</option></select></div>
-      <div><label>التاريخ</label><input id="rDate" type="date" value="${new Date().toISOString().slice(0,10)}" required></div>
-    </div><label>ملاحظات</label><textarea id="rNotes" rows="3"></textarea>
-    <button class="btn">حفظ التسميع</button></form></div>`;
+if(!s.circle)s.circle="";
+});
+recitations.forEach((r,index)=>{
+if(!r.id){r.id=Date.now()+index;changed=true}
+if(!r.dateISO&&r.date){const parsed=parseOldDate(r.date);if(parsed){r.dateISO=parsed;changed=true}}
+if(!r.mode){r.mode=(r.session&&String(r.session).includes("عن"))?"عن بُعد":"حضوري";changed=true}
+if(!r.day){
+if(r.session){
+const days=["السبت","الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس"];
+const found=days.find(d=>String(r.session).includes(d));
+if(found)r.day=found;
 }
-
-function reports(){
-  const rec=data.recitations.filter(r=>r.circle===teacher().circle).sort((a,b)=>b.date.localeCompare(a.date));
-  return `<div class="card"><h2>التقارير</h2><div class="actions"><button class="btn" id="printReport">طباعة التقرير</button></div>
-  <table><thead><tr><th>التاريخ</th><th>الطالبة</th><th>المستوى</th><th>المتن</th><th>من-إلى</th><th>التقييم</th></tr></thead><tbody>${rec.map(r=>`<tr><td>${esc(fmtDate(r.date))}</td><td>${esc(r.studentName)}</td><td>${esc(r.levelName)}</td><td>${esc(r.matn)}</td><td>${esc(r.from)} - ${esc(r.to)}</td><td>${esc(r.rating)}</td></tr>`).join("")||`<tr><td colspan="6">لا توجد سجلات.</td></tr>`}</tbody></table></div>`;
+if(!r.day&&r.dateISO)r.day=dayNameFromISO(r.dateISO);
+if(!r.day)r.day="غير محدد";
+changed=true;
 }
-
-function settings(){
-  const c=circle();
-  return `<div class="card"><h2>إعدادات الحلقة</h2><form id="circleForm"><div class="grid">
-    <div><label>اسم الحلقة</label><input id="cName" value="${esc(c.name)}" required></div>
-    <div><label>اليوم</label><select id="cDay">${DAYS.map(d=>`<option ${d===c.day?"selected":""}>${d}</option>`).join("")}</select></div>
-    <div><label>نوع الحلقة</label><select id="cMode"><option ${c.mode==="حضوري"?"selected":""}>حضوري</option><option ${c.mode==="عن بعد"?"selected":""}>عن بعد</option></select></div>
-  </div><button class="btn">حفظ إعدادات الحلقة</button></form></div>
-  <div class="card"><h2>المستويات والمتون</h2><div class="notice">القائمة الحالية نموذجية وقابلة للتعديل لاحقًا وفق المنهج المعتمد رسميًا.</div>${LEVELS.map(l=>`<h3>${esc(l.name)}</h3><p>${l.matn.map(esc).join(" — ")}</p>`).join("")}</div>`;
+if(!r.type){r.type="تسميع";changed=true}
+if(!r.notes)r.notes="";
+});
+if(changed)saveData();
 }
-
-function render(){
-  if(!session){document.getElementById("app").innerHTML=loginView();bindLogin();return}
-  let content=page==="home"?home():page==="students"?students():page==="recitation"?recitation():page==="reports"?reports():settings();
-  document.getElementById("app").innerHTML=layout(content);bind();
+function parseOldDate(value){
+if(!value)return"";
+const match=String(value).match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+if(!match)return"";
+let day=match[1],month=match[2],year=match[3];
+if(year.length===2)year="20"+year;
+return year+"-"+String(month).padStart(2,"0")+"-"+String(day).padStart(2,"0");
 }
-
-function bindLogin(){
-  document.getElementById("loginForm").addEventListener("submit",e=>{
-    e.preventDefault();
-    const id=document.getElementById("teacherId").value, code=document.getElementById("loginCode").value.trim();
-    const t=TEACHERS.find(x=>x.id===id);
-    if(!t||code!==t.code){alert("رمز الدخول غير صحيح.");return}
-    session={teacherId:t.id};localStorage.setItem(SESSION,JSON.stringify(session));page="home";render();
-  });
+function dateToISO(date){
+const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,"0"),d=String(date.getDate()).padStart(2,"0");
+return `${y}-${m}-${d}`;
 }
-
-function fillMatn(levelEl,matnEl){
-  const l=level(levelEl.value);matnEl.disabled=!l;
-  matnEl.innerHTML=l?`<option value="">اختاري المتن</option>${l.matn.map(m=>`<option>${esc(m)}</option>`).join("")}`:`<option>اختاري المستوى أولًا</option>`;
+function dayNameFromISO(iso){
+if(!iso)return"";
+const d=new Date(iso+"T12:00:00");
+const names=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+return names[d.getDay()]||"";
 }
-
-function bind(){
-  document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{page=b.dataset.page;render()});
-  document.getElementById("logout").onclick=()=>{session=null;localStorage.removeItem(SESSION);render()};
-  
-  const sf=document.getElementById("studentForm");
-  if(sf){
-    const sLevelEl=document.getElementById("sLevel"),sMatnEl=document.getElementById("sMatn");
-    sLevelEl.onchange=()=>fillMatn(sLevelEl,sMatnEl);
-    sf.onsubmit=e=>{
-      e.preventDefault();
-      const name=document.getElementById("sName").value.trim(),lid=sLevelEl.value,matn=sMatnEl.value;
-      if(!name||!lid||!matn){alert("أكملي البيانات.");return}
-      const id=Date.now().toString(36),code="ST-"+Math.random().toString(36).slice(2,7).toUpperCase();
-      data.students.push({id,code,name,levelId:lid,matn,circle:teacher().circle,createdAt:new Date().toISOString()});
-      save();alert("تم حفظ الطالبة. كودها: "+code);render();
-    };
-    document.querySelectorAll("[data-history]").forEach(b=>b.onclick=()=>showHistory(b.dataset.history));
-  }
-
-  const rf=document.getElementById("recForm");
-  if(rf){
-    const rLevelEl=document.getElementById("rLevel"),rMatnEl=document.getElementById("rMatn");
-    rLevelEl.onchange=()=>fillMatn(rLevelEl,rMatnEl);
-    rf.onsubmit=e=>{
-      e.preventDefault();
-      const st=data.students.find(s=>s.id===document.getElementById("rStudent").value),lv=level(rLevelEl.value);
-      if(!st||!lv||!rMatnEl.value){alert("أكملي بيانات التسميع.");return}
-      const now=new Date();
-      data.recitations.push({
-        id:Date.now().toString(36),studentId:st.id,studentName:st.name,circle:teacher().circle,
-        levelId:lv.id,levelName:lv.name,matn:rMatnEl.value,
-        from:document.getElementById("rFrom").value.trim(),to:document.getElementById("rTo").value.trim(),
-        type:document.getElementById("rType").value,rating:document.getElementById("rRating").value,
-        notes:document.getElementById("rNotes").value.trim(),date:document.getElementById("rDate").value,
-        time:now.toTimeString().slice(0,5),teacherId:teacher().id,teacherName:teacher().name
-      });
-      st.levelId=lv.id;st.matn=rMatnEl.value;save();alert("تم حفظ التسميع بنجاح.");render();
-    };
-  }
-
-  const cf=document.getElementById("circleForm");
-  if(cf)cf.onsubmit=e=>{
-    e.preventDefault();
-    const c=circle();
-    c.name=document.getElementById("cName").value.trim();
-    c.day=document.getElementById("cDay").value;
-    c.mode=document.getElementById("cMode").value;
-    save();alert("تم حفظ إعدادات الحلقة.");render();
-  };
-
-  const pr=document.getElementById("printReport");
-  if(pr)pr.onclick=()=>window.print();
+function formatDate(iso){
+if(!iso)return"-";
+const parts=iso.split("-");
+if(parts.length!==3)return iso;
+return `${parts[2]}/${parts[1]}/${parts[0]}`;
 }
-
-function showHistory(id){
-  const s=data.students.find(x=>x.id===id),rs=data.recitations.filter(r=>r.studentId===id);
-  alert("الطالبة: "+s.name+"\n\n"+(rs.length?rs.map(r=>`${r.date} | ${r.matn} | ${r.from}-${r.to} | ${r.rating}`).join("\n"):"لا يوجد سجل تسميع."));
+function todayISO(){return dateToISO(new Date())}
+function fillCircles(){
+const select=$("teacherCircle");
+select.innerHTML='<option value="">اختاري رقم الحلقة</option>';
+for(let i=1;i<=14;i++)select.insertAdjacentHTML("beforeend",`<option value="${i}">الحلقة ${i}</option>`);
 }
-
-render();
-})();
+function selectLoginRole(role){
+document.querySelectorAll(".role-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.role===role));
+$("teacherLoginBox").classList.toggle("hidden",role!=="teacher");
+$("studentLoginBox").classList.toggle("hidden",role!=="student");
+$("adminLoginBox").classList.toggle("hidden",role!=="admin");
+$("loginError").style.display="none";
+}
+function showLoginError(message){
+const box=$("loginError");box.textContent=message;box.style.display="block";
+}
+function login(){
+$("loginError").style.display="none";
+const active=document.querySelector(".role-btn.active");
+const role=active?active.dataset.role:"teacher";
+if(role==="teacher"){
+const circle=$("teacherCircle").value;
+const code=$("teacherCode").value.trim().toLowerCase();
+if(!circle||!code){showLoginError("الرجاء اختيار رقم الحلقة وإدخال الكود.");return}
+const teacher=TEACHERS[circle];
+if(!teacher||teacher.code.toLowerCase()!==code){showLoginError("كود المعلمة غير صحيح.");return}
+currentRole="معلمة";currentUser=teacher.name;currentCircle=circle;currentStudent=null;openTeacherSystem();return;
+}
+if(role==="student"){
+const code=$("studentCodeLogin").value.trim().toLowerCase();
+if(!code){showLoginError("الرجاء إدخال كود الطالبة.");return}
+const student=students.find(s=>String(s.studentCode||"").toLowerCase()===code);
+if(!student){showLoginError("كود الطالبة غير صحيح أو غير موجود.");return}
+currentRole="طالبة";currentUser=student.name;currentCircle=String(student.circle||"");currentStudent=student;openStudentPortal();return;
+}
+if(role==="admin"){
+const code=$("adminCode").value.trim();
+if(code!==ADMIN_CODE){showLoginError("كود الإدارة غير صحيح.");return}
+currentRole="إدارة";currentUser="الإدارة العامة";currentCircle="all";currentStudent=null;openTeacherSystem();return;
+}
+}
+function openTeacherSystem(){
+$("loginScreen").classList.add("hidden");
+$("studentPortal").classList.add("hidden");
+$("mainSystem").classList.remove("hidden");
+$("welcome").textContent=currentRole==="إدارة"?"أهلاً بك في إدارة منصة إتقان 🏢":`أهلاً بك يا ${currentUser} 🌷`;
+$("roleInfo").textContent=currentRole==="إدارة"?"الصلاحية: الإدارة العامة — جميع الحلقات":`الصلاحية: معلمة — الحلقة ${currentCircle}`;
+switchTab("home");
+renderAll();
+}
+function openStudentPortal(){
+$("loginScreen").classList.add("hidden");
+$("mainSystem").classList.add("hidden");
+$("studentPortal").classList.remove("hidden");
+renderStudentPortal();
+}
+function renderStudentPortal(){
+if(!currentStudent)return;
+const records=getStudentRecords(currentStudent);
+$("portalStudentName").textContent=currentStudent.name||"-";
+$("portalCircle").textContent=currentStudent.circle?"الحلقة "+currentStudent.circle:"-";
+$("portalLevel").textContent=currentStudent.level||"-";
+$("portalBook").textContent=currentStudent.book||"-";
+$("portalCode").textContent=currentStudent.studentCode||"-";
+if(records.length){
+const avg=records.reduce((sum,r)=>sum+Number(r.rating||0),0)/records.length;
+$("portalAverage").textContent=avg.toFixed(1)+"/10";
+}else $("portalAverage").textContent="-";
+const tbody=$("portalHistory");tbody.innerHTML="";
+if(!records.length){tbody.innerHTML='<tr><td colspan="8" class="empty">لا توجد سجلات تسميع حتى الآن.</td></tr>';return}
+records.slice().sort(sortRecordsDesc).forEach(r=>{
+tbody.insertAdjacentHTML("beforeend",`<tr>
+<td>${escapeHTML(displayRecordDate(r))}</td><td>${escapeHTML(r.day||"-")}</td><td>${escapeHTML(r.mode||"-")}</td>
+<td>${escapeHTML(r.level||"-")}</td><td>${escapeHTML(r.book||"-")}</td><td>${escapeHTML(r.from||"-")}</td>
+<td>${escapeHTML(r.to||"-")}</td><td><strong>${escapeHTML(r.rating||"-")}</strong>/10</td>
+</tr>`);
+});
+}
+function getVisibleStudents(){
+if(currentRole==="إدارة")return students.slice();
+if(currentRole==="معلمة")return students.filter(s=>String(s.circle||"")===String(currentCircle)||(!s.circle&&String(s.role||"").includes(`الحلقة (${currentCircle})`)));
+return[];
+}
+function getStudentRecords(student){
+return recitations.filter(r=>(r.studentId&&String(r.studentId)===String(student.id))||(!r.studentId&&r.student===student.name));
+}
+function getVisibleRecitations(){
+if(currentRole==="إدارة")return recitations.slice();
+if(currentRole==="معلمة"){
+const ids=new Set(getVisibleStudents().map(s=>String(s.id)));
+return recitations.filter(r=>r.studentId?ids.has(String(r.studentId)):getVisibleStudents().some(s=>s.name===r.student));
+}
+return[];
+}
+function generateStudentCode(){
+let code;
+do{code="ST-"+Math.floor(10000+Math.random()*90000)}while(students.some(s=>String(s.studentCode).toUpperCase()===code));
+return code;
+}
+function populateLevels(selectId){
+const select=$(selectId);select.innerHTML='<option value="">اختاري المستوى</option>';
+Object.keys(LEVELS).forEach(level=>select.insertAdjacentHTML("beforeend",`<option value="${escapeHTML(level)}">${escapeHTML(level)}</option>`));
+}
+function populateBooks(selectId,level,selected=""){
+const select=$(selectId);select.innerHTML='<option value="">اختاري المتن</option>';
+const books=LEVELS[level]||[];
+books.forEach(book=>select.insertAdjacentHTML("beforeend",`<option value="${escapeHTML(book)}">${escapeHTML(book)}</option>`));
+if(selected&&books.includes(selected))select.value=selected;
+}
+function addStudent(){
+if(currentRole!=="معلمة"){alert("إضافة الطالبات تتم من حساب المعلمة.");return}
+const name=$("studentName").value.trim(),level=$("studentLevel").value,book=$("studentBook").value;
+if(!name||!level||!book){alert("الرجاء إدخال اسم الطالبة واختيار المستوى والمتن.");return}
+if(!LEVELS[level]||!LEVELS[level].includes(book)){alert("المتن المختار لا يتبع المستوى المحدد.");return}
+const code=generateStudentCode();
+const student={id:Date.now(),name:name,circle:String(currentCircle),level:level,book:book,studentCode:code,addedBy:currentUser,createdAt:Date.now()};
+students.push(student);saveData();
+$("studentName").value="";$("studentLevel").value="";populateBooks("studentBook","");
+renderAll();
+alert(`تمت إضافة الطالبة بنجاح 🌷\n\nاسم الطالبة: ${name}\nالحلقة: ${currentCircle}\nالمستوى: ${level}\nالمتن: ${book}\n\nكود دخول الطالبة:\n${code}\n\nاحتفظي بالكود وأعطيه للطالبة.`);
+}
+function deleteStudent(id){
+const student=students.find(s=>String(s.id)===String(id));
+if(!student)return;
+if(currentRole!=="إدارة"&&String(student.circle)!==String(currentCircle)){alert("لا تملكين صلاحية حذف هذه الطالبة.");return}
+if(!confirm(`هل أنتِ متأكدة من حذف الطالبة:\n${student.name}؟\n\nسيبقى سجل التسميع محفوظًا.`))return;
+students=students.filter(s=>String(s.id)!==String(id));saveData();renderAll();
+}
+function renderRecitationStudents(){
+const select=$("recStudent"),visible=getVisibleStudents();
+select.innerHTML='<option value="">اختاري الطالبة</option>';
+visible.forEach(student=>select.insertAdjacentHTML("beforeend",`<option value="${escapeHTML(student.id)}">${escapeHTML(student.name)}</option>`));
+if(visible.length){select.value=String(visible[0].id);fillRecitationStudentData(visible[0]);}
+}
+function fillRecitationStudentData(student){
+if(!student)return;
+populateLevels("recLevel");$("recLevel").value=student.level||"";
+populateBooks("recBook",student.level||"",student.book||"");
+}
+function saveRecitation(){
+const studentId=$("recStudent").value,level=$("recLevel").value,book=$("recBook").value,day=$("recDay").value,mode=$("recMode").value,date=$("recDate").value,from=$("recFrom").value.trim(),to=$("recTo").value.trim(),type=$("recType").value,rating=Number($("recRating").value),notes=$("recNotes").value.trim();
+if(!studentId||!level||!book||!day||!mode||!date||!from||!to||!rating){alert("الرجاء إكمال جميع بيانات التسميع.");return}
+if(!LEVELS[level]||!LEVELS[level].includes(book)){alert("المتن المختار لا يتبع المستوى المحدد.");return}
+if(!Number.isInteger(rating)||rating<1||rating>10){alert("التقييم يجب أن يكون رقمًا صحيحًا من 1 إلى 10.");return}
+const student=students.find(s=>String(s.id)===String(studentId));
+if(!student){alert("تعذر العثور على الطالبة.");return}
+if(currentRole!=="إدارة"&&String(student.circle)!==String(currentCircle)){alert("لا تملكين صلاحية تسجيل التسميع لهذه الطالبة.");return}
+const record={
+id:Date.now(),teacher:currentUser,circle:student.circle||currentCircle,studentId:student.id,student:student.name,level:level,book:book,day:day,mode:mode,session:`${mode} - ${day}`,dateISO:date,date:formatDate(date),from:from,to:to,type:type,rating:rating,notes:notes,timestamp:new Date(date+"T12:00:00").getTime(),createdAt:Date.now()
+};
+recitations.push(record);
+student.level=level;student.book=book;saveData();
+alert(`تم حفظ التسميع بنجاح 🌷\n\nالطالبة: ${student.name}\nالتاريخ: ${formatDate(date)}\nاليوم: ${day}\nنوع الحلقة: ${mode}\nالمتن: ${book}\nمن: ${from}\nإلى: ${to}\nالتقييم: ${rating}/10`);
+$("recFrom").value="";$("recTo").value="";$("recRating").value="";$("recNotes").value="";$("recDate").value=todayISO();renderAll();
+}
+function showReportControls(type){
+selectedReportType=type;$("reportControls").classList.remove("hidden");
+$("dailyControls").classList.toggle("hidden",type!=="daily");
+$("rangeControls").classList.toggle("hidden",type!=="range");
+$("monthControls").classList.toggle("hidden",type!=="monthly");
+if(type==="daily"){$("reportControlsTitle").textContent="📅 تقرير يوم محدد";$("reportSingleDate").value=todayISO()}
+if(type==="range"){$("reportControlsTitle").textContent="📆 تقرير من تاريخ إلى تاريخ";const today=todayISO();$("reportFromDate").value=today;$("reportToDate").value=today}
+if(type==="monthly"){ $("reportControlsTitle").textContent="📊 التقرير الشهري";const now=new Date();$("reportMonth").value=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}` }
+$("reportResult").classList.add("hidden");
+window.scrollTo({top:$("reportControls").offsetTop-10,behavior:"smooth"});
+}
+function getReportRecords(){return getVisibleRecitations().slice().sort(sortRecordsAsc)}
+function sortRecordsAsc(a,b){
+const da=a.dateISO||"",db=b.dateISO||"";if(da<db)return-1;if(da>db)return 1;
+const ca=String(a.circle||""),cb=String(b.circle||"");if(ca<cb)return-1;if(ca>cb)return 1;
+return String(a.student||"").localeCompare(String(b.student||""),"ar");
+}
+function sortRecordsDesc(a,b){const da=a.dateISO||"",db=b.dateISO||"";if(da<db)return 1;if(da>db)return-1;return 0}
+function displayRecordDate(r){return r.date||(r.dateISO?formatDate(r.dateISO):"-")}
+function filterReportRecords(){
+const all=getReportRecords();
+if(selectedReportType==="daily"){
+const date=$("reportSingleDate").value;
+return{records:all.filter(r=>r.dateISO===date),from:date,to:date};
+}
+if(selectedReportType==="range"){
+let from=$("reportFromDate").value,to=$("reportToDate").value;
+if(!from||!to)return{error:"الرجاء اختيار تاريخ البداية والنهاية."};
+if(from>to){const temp=from;from=to;to=temp}
+return{records:all.filter(r=>r.dateISO&&r.dateISO>=from&&r.dateISO<=to),from,to};
+}
+if(selectedReportType==="monthly"){
+const month=$("reportMonth").value;
+if(!month)return{error:"الرجاء اختيار الشهر."};
+const records=all.filter(r=>r.dateISO&&r.dateISO.startsWith(month+"-"));
+const parts=month.split("-"),year=Number(parts[0]),m=Number(parts[1]),last=new Date(year,m,0).getDate();
+return{records,from:`${month}-01`,to:`${month}-${String(last).padStart(2,"0")}`};
+}
+return{records:[],from:"",to:""};
+}
+function generateReport(){
+const result=filterReportRecords();
+if(result.error){alert(result.error);return}
+const records=result.records;
+$("reportResult").classList.remove("hidden");
+let title="";
+if(selectedReportType==="daily")title="التقرير اليومي";
+if(selectedReportType==="range")title="التقرير من تاريخ إلى تاريخ";
+if(selectedReportType==="monthly")title="التقرير الشهري";
+const uniqueStudents=new Set(records.map(r=>r.studentId||r.student)).size;
+let html=`<div id="printReportContent">
+<div style="text-align:center;border-bottom:3px solid var(--gold);padding-bottom:12px;margin-bottom:15px;">
+<div style="color:var(--green);font-weight:bold;font-size:14px;">وزارة الأوقاف والشؤون الإسلامية بنغازي</div>
+<h2 style="color:var(--green);margin:6px 0;">مركز السنة لتحفيظ المتون العلمية والسنة النبوية</h2>
+<div style="color:var(--gold);font-weight:bold;">مركز سعد بن معاذ</div>
+<h3 style="margin:12px 0 0;">${title}</h3>
+</div>
+<div class="stat-grid" style="margin-bottom:15px;">
+<div class="stat"><strong>${records.length}</strong><span>عدد جلسات التسميع</span></div>
+<div class="stat"><strong>${uniqueStudents}</strong><span>عدد الطالبات</span></div>
+<div class="stat"><strong>${formatDate(result.from)}</strong><span>بداية الفترة</span></div>
+</div>
+<div style="margin-bottom:15px;"><strong>الفترة:</strong> ${formatDate(result.from)} إلى ${formatDate(result.to)}</div>`;
+if(!records.length){
+html+=`<div class="notice">لا توجد سجلات تسميع في الفترة المحددة.</div>`;
+}else{
+const groups={};
+records.forEach(r=>{const key=r.dateISO||"بدون تاريخ";if(!groups[key])groups[key]=[];groups[key].push(r)});
+Object.keys(groups).sort().forEach(date=>{
+const day=groups[date][0].day||dayNameFromISO(date)||"غير محدد";
+html+=`<div class="report-day"><div class="report-day-title">📅 ${escapeHTML(day)} — ${escapeHTML(formatDate(date))}</div>`;
+groups[date].forEach((r,index)=>{
+html+=`<div class="report-record">
+<div><strong>${index+1}. ${escapeHTML(r.student||"-")}</strong> ${r.circle?`<span class="badge">الحلقة ${escapeHTML(r.circle)}</span>`:""}</div>
+<div><strong>المستوى:</strong> ${escapeHTML(r.level||"-")}</div>
+<div><strong>المتن:</strong> ${escapeHTML(r.book||"-")}</div>
+<div><strong>من:</strong> ${escapeHTML(r.from||"-")} &nbsp; <strong>إلى:</strong> ${escapeHTML(r.to||"-")}</div>
+<div><strong>نوع التسميع:</strong> ${escapeHTML(r.type||"-")} &nbsp; | &nbsp; <strong>الحلقة:</strong> ${escapeHTML(r.mode||"-")}</div>
+<div><strong>التقييم:</strong> <span class="gold-badge badge">${escapeHTML(r.rating||"-")}/10</span></div>
+${r.notes?`<div><strong>ملاحظات:</strong> ${escapeHTML(r.notes)}</div>`:""}
+</div>`;
+});
+html+=`</div>`;
+});
+}
+if(records.length){
+const avg=records.reduce((sum,r)=>sum+Number(r.rating||0),0)/records.length;
+html+=`<div class="notice"><strong>متوسط التقييم في هذه الفترة:</strong> ${avg.toFixed(1)} / 10</div>`;
+}
+html+=`<div style="margin-top:25px;padding-top:15px;border-top:1px solid #ddd;font-size:13px;line-height:1.8;">
+<strong>المسؤولة:</strong> ${escapeHTML(currentUser)}<br>
+<strong>الحلقة:</strong> ${currentRole==="إدارة"?"جميع الحلقات":escapeHTML(currentCircle)}<br>
+<strong>تاريخ استخراج التقرير:</strong> ${formatDate(todayISO())}
+</div></div>`;
+$("reportHtml").innerHTML=html;
+window.scrollTo({top:$("reportResult").offsetTop-10,behavior:"smooth"});
+}
+function openStudentModal(id){
+const student=students.find(s=>String(s.id)===String(id));if(!student)return;
+$("modalName").textContent=`📖 سجل الطالبة: ${student.name}`;
+$("modalCode").textContent=student.studentCode||"-";
+$("modalCurrent").textContent=`${student.level||"-"} — ${student.book||"-"}`;
+const records=getStudentRecords(student).slice().sort(sortRecordsDesc),tbody=$("modalHistory");tbody.innerHTML="";
+if(!records.length){tbody.innerHTML=`<tr><td colspan="8" class="empty">لا توجد سجلات تسميع.</td></tr>`}
+else records.forEach(r=>tbody.insertAdjacentHTML("beforeend",`<tr>
+<td>${escapeHTML(displayRecordDate(r))}</td><td>${escapeHTML(r.day||"-")}</td><td>${escapeHTML(r.mode||"-")}</td>
+<td>${escapeHTML(r.level||"-")}</td><td>${escapeHTML(r.book||"-")}</td><td>${escapeHTML(r.from||"-")}</td>
+<td>${escapeHTML(r.to||"-")}</td><td><strong>${escapeHTML(r.rating||"-")}</strong>/10</td>
+</tr>`));
+$("studentModal").style.display="flex";
+}
+function switchTab(tab){
+document.querySelectorAll(".section-content").forEach(section=>section.classList.remove("active"));
+const target=$("section-"+tab);if(target)target.classList.add("active");
+document.querySelectorAll(".nav-item").forEach(item=>item.classList.toggle("active",item.dataset.tab===tab));
+if(tab==="home")renderHome();
+if(tab==="students")renderStudents();
+if(tab==="recitation")renderRecitationStudents();
+if(tab==="reports")$("reportResult").classList.add("hidden");
+}
+function renderHome(){
+const visibleStudents=getVisibleStudents(),visibleRecords=getVisibleRecitations();
+$("studentCount").textContent=visibleStudents.length;
+$("recitationCount").textContent=visibleRecords.length;
+$("todayCount").textContent=visibleRecords.filter(r=>r.dateISO===todayISO()).length;
+}
+function renderStudents(){
+const visible=getVisibleStudents(),tbody=$("studentsTable");tbody.innerHTML="";$("studentCount").textContent=visible.length;
+if(!visible.length){tbody.innerHTML='<tr><td colspan="6" class="empty">لا توجد طالبات مسجلات حتى الآن.</td></tr>';return}
+visible.forEach(student=>{
+const action=currentRole==="معلمة"||currentRole==="إدارة"?`<div class="actions">
+<button class="btn btn-small btn-gold view-student" data-id="${student.id}">السجل</button>
+<button class="btn btn-small btn-danger delete-student" data-id="${student.id}">حذف</button>
+</div>`:"-";
+tbody.insertAdjacentHTML("beforeend",`<tr>
+<td><strong>${escapeHTML(student.name)}</strong></td>
+<td><span class="badge">الحلقة ${escapeHTML(student.circle||"-")}</span></td>
+<td>${escapeHTML(student.level||"-")}</td>
+<td>${escapeHTML(student.book||"-")}</td>
+<td><strong style="color:var(--green);">${escapeHTML(student.studentCode||"-")}</strong></td>
+<td>${action}</td>
+</tr>`);
+});
+}
+function renderAll(){renderHome();renderStudents();renderRecitationStudents()}
+function logout(){
+currentRole="";currentUser="";currentCircle="";currentStudent=null;
+$("mainSystem").classList.add("hidden");$("studentPortal").classList.add("hidden");$("loginScreen").classList.remove("hidden");
+$("teacherCode").value="";$("studentCodeLogin").value="";$("adminCode").value="";selectLoginRole("teacher");
+}
+function printReport(){
+const content=$("reportHtml").innerHTML;if(!content){alert("أنشئي التقرير أولًا.");return}
+$("printArea").innerHTML=`<div style="font-family:Tahoma,Arial,sans-serif;direction:rtl;text-align:right;">${content}</div>`;
+window.print();
+}
+async function copyReport(){
+const text=$("reportHtml").innerText;if(!text){alert("أنشئي التقرير أولًا.");return}
+try{await navigator.clipboard.writeText(text);alert("تم نسخ التقرير بنجاح 🌷")}
+catch(e){const area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();document.execCommand("copy");area.remove();alert("تم نسخ التقرير.")}
+}
+document.addEventListener("DOMContentLoaded",function(){
+loadData();fillCircles();populateLevels("studentLevel");populateLevels("recLevel");populateBooks("studentBook","");populateBooks("recBook","");$("recDate").value=todayISO();
+document.querySelectorAll(".role-btn").forEach(btn=>btn.addEventListener("click",function(){selectLoginRole(this.dataset.role)}));
+$("loginButton").addEventListener("click",login);
+["teacherCode","studentCodeLogin","adminCode"].forEach(id=>$(id).addEventListener("keydown",function(e){if(e.key==="Enter")login()}));
+$("studentLevel").addEventListener("change",function(){populateBooks("studentBook",this.value)});
+$("recStudent").addEventListener("change",function(){const student=students.find(s=>String(s.id)===String(this.value));fillRecitationStudentData(student)});
+$("recLevel").addEventListener("change",function(){populateBooks("recBook",this.value)});
+$("addStudent").addEventListener("click",addStudent);
+$("saveRecitation").addEventListener("click",saveRecitation);
+$("dailyReport").addEventListener("click",()=>showReportControls("daily"));
+$("rangeReport").addEventListener("click",()=>showReportControls("range"));
+$("monthlyReport").addEventListener("click",()=>showReportControls("monthly"));
+$("generateReport").addEventListener("click",generateReport);
+$("printReport").addEventListener("click",printReport);
+$("copyReport").addEventListener("click",copyReport);
+document.querySelectorAll(".nav-item").forEach(item=>item.addEventListener("click",function(){switchTab(this.dataset.tab)}));
+$("studentsTable").addEventListener("click",function(e){
+const view=e.target.closest(".view-student"),del=e.target.closest(".delete-student");
+if(view)openStudentModal(view.dataset.id);
+if(del)deleteStudent(del.dataset.id);
+});
+$("closeModal").addEventListener("click",function(){$("studentModal").style.display="none"});
+$("studentModal").addEventListener("click",function(e){if(e.target===$("studentModal"))$("studentModal").style.display="none"});
+$("studentLogout").addEventListener("click",logout);
+selectLoginRole("teacher");
+$("loginScreen").classList.remove("hidden");
+});
 </script>
 </body>
 </html>
